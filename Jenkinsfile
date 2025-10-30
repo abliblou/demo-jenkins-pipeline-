@@ -6,9 +6,11 @@ pipeline {
     stages {
         stage('Git clone'){
             steps {
-                echo 'Clonage du repo'
-                checkout scm
-                sh 'ls -la'
+                dir('src') {
+                    echo 'Clonage du repo'
+                    checkout scm
+                    sh 'ls -la'
+                }
             }
         }
         stage('Build'){
@@ -19,9 +21,10 @@ pipeline {
         }
         stage('Test'){
             steps{
-                echo 'Test unitaire'
-                sh 'mvn test'
-                
+                dir('src') {
+                    echo 'Test unitaire'
+                    sh 'mvn test'
+                }
             }
             post {
                 always {
