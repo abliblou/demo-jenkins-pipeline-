@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'maven:sapmachine'}
-    }
+    agent any
 
     stages {
         stage('Git clone'){
