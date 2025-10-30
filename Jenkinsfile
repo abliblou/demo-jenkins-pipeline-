@@ -6,11 +6,9 @@ pipeline {
     stages {
         stage('Git clone'){
             steps {
-                dir('src') {
-                    echo 'Clonage du repo'
-                    checkout scm
-                    sh 'ls -la'
-                }
+                echo 'Clonage du repo'
+                checkout scm
+                sh 'ls -la'
             }
         }
         stage('Build'){
@@ -36,7 +34,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts 'target/surefire-reports/*.xml'
+            archiveArtifacts 'src/target/surefire-reports/*.xml'
         }
         success {
             echo 'Cest un succes'
