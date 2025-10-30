@@ -13,8 +13,10 @@ pipeline {
         }
         stage('Build'){
             steps{
+                dir('src') {
                 echo 'Compilation du projet'
                 sh 'mvn compile'
+                }
             }
         }
         stage('Test'){
